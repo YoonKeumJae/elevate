@@ -437,7 +437,46 @@
           ease: "power3.out",
         });
       });
+        const offices = {
+        Gyeongnam: "https://sw-ms.gne.go.kr",
+        Daegu: "www.o365.dge.go.kr",
+        Seoul: "https://o365.sen.go.kr",
+        Busan: "https://o365.pen.go.kr",
+        Incheon: "https://o365.ice.go.kr",
+        Gyeonggi: "https://cloud.goe.go.kr",
+        Sejong: "https://o365.sje.go.kr",
+        Chungbuk: "https://cloud.cbe.go.kr",
+        Ulsan: "https://o365.use.go.kr",
+        Chungnam: "https://o365.cne.go.kr",
+        Gyeongbuk: "https://365.gyo6.net",
+        JeJu: "https://365.gyo6.net",
+        Daejeon: "https://www.dje365.kr",
+        Jeonnam: "https://cloud.cbe.go.kr",
+        Jeonbuk: "https://getsw.jbe.go.kr",
+        Gwangju: "https://o365.gen.go.kr",
+        Gangwon: "https://office365.gwe.go.kr"
+      };
     
+      // Key -> 표시 이름(툴팁용)
+      const officeNames = {
+        Gyeongnam: "경남교육청",
+        Daegu: "대구교육청",
+        Seoul: "서울교육청",
+        Busan: "부산교육청",
+        Incheon: "인천교육청",
+        Gyeonggi: "경기교육청",
+        Sejong: "세종교육청",
+        Chungbuk: "충북교육청",
+        Ulsan: "울산교육청",
+        Chungnam: "충남교육청",
+        Gyeongbuk: "경북교육청",
+        JeJu: "제주교육청",
+        Daejeon: "대전교육청",
+        Jeonnam: "전남교육청",
+        Jeonbuk: "전북교육청",
+        Gwangju: "광주교육청",
+        Gangwon: "강원교육청"
+      };
       // 2. Map Interaction Logic (fixed)  ✅ 여기부터 아래 블록이 교체된 부분
       const mapPoints = document.querySelectorAll(".map-point");
       const tooltip = document.getElementById("tooltip");
