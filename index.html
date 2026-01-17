@@ -186,43 +186,100 @@
 
         <div class="lg:w-1/2 relative flex justify-center items-center h-[500px] lg:h-[700px] w-full map-container">
             
-            <svg viewBox="0 0 400 600" class="w-full h-full drop-shadow-xl" id="korea-map">
-                <g class="map-line">
-                    <line x1="120" y1="120" x2="140" y2="140" />
-                    <line x1="140" y1="140" x2="200" y2="200" />
-                    <line x1="120" y1="120" x2="100" y2="130" />
-                    <line x1="140" y1="140" x2="140" y2="250" />
-                    <line x1="140" y1="250" x2="180" y2="250" />
-                    <line x1="180" y1="250" x2="250" y2="350" />
-                    <line x1="250" y1="350" x2="300" y2="350" />
-                    <line x1="300" y1="350" x2="280" y2="400" />
-                    <line x1="140" y1="250" x2="120" y2="400" />
-                    <line x1="120" y1="400" x2="120" y2="520" />
-                </g>
-
-                <g id="map-points">
-                    <circle cx="120" cy="120" r="6" class="map-point" data-name="서울교육청" data-url="https://o365.sen.go.kr/" />
-                    <circle cx="100" cy="130" r="5" class="map-point" data-name="인천교육청" data-url="https://o365.ice.go.kr/" />
-                    <circle cx="140" cy="140" r="10" class="map-point" data-name="경기교육청" data-url="https://cloud.goe.go.kr/" style="opacity:0.6" />
-                    
-                    <circle cx="200" cy="110" r="5" class="map-point" data-name="강원교육청" data-url="https://office365.gwe.go.kr/" />
-                    
-                    <circle cx="140" cy="250" r="5" class="map-point" data-name="세종/충남" data-url="https://o365.cne.go.kr/" />
-                    <circle cx="180" cy="230" r="5" class="map-point" data-name="충북교육청" data-url="https://cloud.cbe.go.kr/" />
-                    <circle cx="180" cy="260" r="6" class="map-point" data-name="대전교육청" data-url="https://www.dje365.kr/" />
-                    
-                    <circle cx="250" cy="330" r="5" class="map-point" data-name="경북교육청" data-url="https://365.gbe.kr/" />
-                    <circle cx="250" cy="360" r="6" class="map-point" data-name="대구교육청" data-url="https://o365.dge.go.kr/" />
-                    
-                    <circle cx="120" cy="350" r="5" class="map-point" data-name="전북교육청" data-url="https://get365.jbe.go.kr/" />
-                    <circle cx="120" cy="400" r="6" class="map-point" data-name="광주/전남" data-url="https://o365.gen.go.kr/" />
-                    
-                    <circle cx="300" cy="350" r="5" class="map-point" data-name="울산교육청" data-url="https://o365.use.go.kr/" />
-                    <circle cx="280" cy="400" r="6" class="map-point" data-name="부산교육청" data-url="https://o365.pen.go.kr/" />
-                    <circle cx="220" cy="400" r="5" class="map-point" data-name="경남교육청" data-url="https://sw-ms.gne.go.kr/" />
-                    
-                    <circle cx="120" cy="520" r="5" class="map-point" data-name="제주교육청" data-url="https://o365.jje.go.kr/" />
-                </g>
+            <svg viewBox="0 0 400 600" class="w-full h-full drop-shadow-xl" id="korea-map" aria-label="대한민국 교육청 지도" role="img">
+              <!-- 1) Korea silhouette (stylized but recognizable) -->
+              <path
+                id="korea-outline"
+                d="M210 45
+                   C230 60 245 85 240 105
+                   C235 125 250 150 265 165
+                   C285 185 295 210 285 235
+                   C275 260 285 285 300 305
+                   C320 330 315 360 300 380
+                   C285 400 290 430 305 455
+                   C322 485 305 515 280 530
+                   C260 542 255 560 245 575
+                   C230 595 200 598 185 580
+                   C170 560 150 545 135 535
+                   C110 517 95 490 105 465
+                   C115 440 110 415 95 390
+                   C80 365 85 335 105 315
+                   C120 300 122 275 115 250
+                   C105 220 115 190 135 170
+                   C150 155 145 130 130 110
+                   C115 90 120 65 140 55
+                   C160 45 185 35 210 45 Z"
+                fill="rgba(255,255,255,0.55)"
+                stroke="rgba(0,120,212,0.22)"
+                stroke-width="2"
+              />
+            
+              <!-- subtle inner highlight -->
+              <path
+                d="M205 75
+                   C220 90 226 110 220 125
+                   C213 145 225 165 242 182
+                   C258 200 265 220 255 240
+                   C245 260 255 285 270 305
+                   C288 330 280 360 264 376
+                   C248 392 252 420 266 445
+                   C282 470 265 495 245 508
+                   C228 519 220 540 210 555
+                   C198 572 180 570 170 555
+                   C160 540 145 525 132 515
+                   C112 499 103 478 112 458
+                   C122 438 120 415 105 392
+                   C92 372 96 346 112 330
+                   C128 314 130 290 122 268
+                   C112 240 120 215 135 198
+                   C148 182 145 160 132 142
+                   C118 122 124 98 142 88
+                   C160 78 182 68 205 75 Z"
+                fill="rgba(0,120,212,0.04)"
+              />
+            
+              <!-- 2) Route lines (animated dashed) -->
+              <g id="map-routes" class="map-line" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <!-- main spine -->
+                <path d="M170 110 C175 145 175 175 178 210 C181 250 185 290 190 335 C195 385 202 430 208 470" />
+                <!-- branches -->
+                <path d="M178 210 C160 215 142 225 128 240" />
+                <path d="M190 335 C220 330 245 320 265 305" />
+                <path d="M208 470 C240 460 265 440 285 418" />
+                <path d="M175 155 C155 150 138 140 124 128" />
+              </g>
+            
+              <!-- 3) Points -->
+              <g id="map-points">
+                <!-- 수도권 -->
+                <circle cx="165" cy="120" r="6" class="map-point" data-r="6" data-key="Seoul" />
+                <circle cx="148" cy="132" r="5" class="map-point" data-r="5" data-key="Incheon" />
+                <circle cx="178" cy="140" r="10" class="map-point" data-r="10" data-key="Gyeonggi" style="opacity:0.65" />
+            
+                <!-- 강원 -->
+                <circle cx="225" cy="125" r="5" class="map-point" data-r="5" data-key="Gangwon" />
+            
+                <!-- 충청 -->
+                <circle cx="175" cy="245" r="5" class="map-point" data-r="5" data-key="Sejong" />
+                <circle cx="205" cy="235" r="5" class="map-point" data-r="5" data-key="Chungbuk" />
+                <circle cx="200" cy="265" r="6" class="map-point" data-r="6" data-key="Daejeon" />
+                <circle cx="165" cy="260" r="5" class="map-point" data-r="5" data-key="Chungnam" />
+            
+                <!-- 영남 -->
+                <circle cx="255" cy="330" r="5" class="map-point" data-r="5" data-key="Gyeongbuk" />
+                <circle cx="245" cy="360" r="6" class="map-point" data-r="6" data-key="Daegu" />
+                <circle cx="295" cy="355" r="5" class="map-point" data-r="5" data-key="Ulsan" />
+                <circle cx="282" cy="400" r="6" class="map-point" data-r="6" data-key="Busan" />
+                <circle cx="225" cy="405" r="5" class="map-point" data-r="5" data-key="Gyeongnam" />
+            
+                <!-- 호남 -->
+                <circle cx="145" cy="360" r="5" class="map-point" data-r="5" data-key="Jeonbuk" />
+                <circle cx="150" cy="410" r="6" class="map-point" data-r="6" data-key="Gwangju" />
+                <circle cx="125" cy="430" r="6" class="map-point" data-r="6" data-key="Jeonnam" />
+            
+                <!-- 제주 -->
+                <circle cx="155" cy="540" r="5" class="map-point" data-r="5" data-key="JeJu" />
+              </g>
             </svg>
             
             <div id="tooltip" class="absolute bg-slate-800 text-white px-4 py-2 rounded-lg text-sm font-bold shadow-xl -translate-y-10 opacity-0 transition-opacity pointer-events-none z-20">
