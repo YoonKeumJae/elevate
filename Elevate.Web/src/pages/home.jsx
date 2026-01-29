@@ -1,4 +1,5 @@
 import { useEffect, useState, useRef } from 'react';
+import { Helmet } from 'react-helmet-async';
 
 // Assets
 import microsoftLogo from '../assets/Microsoft.png';
@@ -167,6 +168,15 @@ const Home = () => {
 
     return (
         <div className="relative min-h-screen font-sans selection:bg-ms-blue/20 selection:text-ms-blue">
+            <Helmet>
+                <title>Microsoft Elevate | AI for ALL</title>
+                <meta name="description" content="교육 현장을 위한 Microsoft AI 솔루션. M365와 Copilot으로 시작하는 모두를 위한 AI 교육 환경." />
+                <meta property="og:title" content="Microsoft Elevate | AI for ALL" />
+                <meta property="og:description" content="교육 현장을 위한 Microsoft AI 솔루션. M365와 Copilot으로 시작하는 모두를 위한 AI 교육 환경." />
+                <meta property="og:image" content="https://raw.githubusercontent.com/oneot/elevate/main/Elevate.Web/public/elevate-og.png" />
+                <meta property="og:type" content="website" />
+            </Helmet>
+
             {/* Background Blobs */}
             <div className="pastel-bg">
                 <div className="blob blob-1"></div>
