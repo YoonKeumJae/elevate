@@ -727,20 +727,20 @@
         #webchat::-webkit-scrollbar { width: 6px; }
         #webchat::-webkit-scrollbar-track { background: transparent; }
         #webchat::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.1); border-radius: 10px; }
-        
+      
         @keyframes float-slow {
           0%, 100% { transform: translateY(0); }
           50% { transform: translateY(-6px); }
         }
         .animate-float-slow { animation: float-slow 3s ease-in-out infinite; }
-        
+      
         .chat-open .animate-float-slow { 
           animation: none; 
           transform: rotate(45deg); 
           background: rgba(51, 65, 85, 0.9);
           border-color: transparent;
         }
-    
+      
         /* SDK Custom Style */
         .webchat__send-box {
           background: rgba(255,255,255,0.8) !important;
@@ -761,11 +761,37 @@
           box-shadow: 0 0 0 3px rgba(0,120,212,0.1);
         }
         .webchat__basic-transcript__text { font-family: 'Pretendard', sans-serif !important; }
-        
-        /* 아바타 이미지 영역 숨김 (혹시 모를 여백 제거) */
+      
+        /* 아바타 이미지 영역 숨김 */
         .webchat__row.webchat__from-bot .webchat__avatar,
         .webchat__row.webchat__from-user .webchat__avatar {
-           display: none !important;
+          display: none !important;
+        }
+      
+        /* ✅ 여기부터 추가 (맨 아래에 두는 게 포인트) */
+        #webchat .webchat__render-markdown ol,
+        #webchat .webchat__render-markdown ul,
+        #webchat .webchat__text-content__markdown ol,
+        #webchat .webchat__text-content__markdown ul {
+          list-style: revert !important;
+          margin: 0.5rem 0 0.5rem 1.25rem !important;
+          padding-left: 1.25rem !important;
+          list-style-position: outside !important;
+        }
+      
+        #webchat .webchat__render-markdown ol,
+        #webchat .webchat__text-content__markdown ol {
+          list-style-type: decimal !important;
+        }
+      
+        #webchat .webchat__render-markdown ul,
+        #webchat .webchat__text-content__markdown ul {
+          list-style-type: disc !important;
+        }
+      
+        #webchat .webchat__render-markdown li,
+        #webchat .webchat__text-content__markdown li {
+          margin: 0.25rem 0 !important;
         }
       </style>
     
