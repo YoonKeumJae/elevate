@@ -12,7 +12,12 @@
       "publishedAt": "2026-01-01",
       "likes": 0,
       "comments": 0,
-      "category": "teams"
+      "category": "teams",
+      "tags": [
+        "teams",
+        "collaboration",
+        "productivity"
+      ]
     },
     {
       "id": "minecraft/copilot",
@@ -26,7 +31,12 @@
       "publishedAt": "2026-01-01",
       "likes": 0,
       "comments": 0,
-      "category": "minecraft"
+      "category": "minecraft",
+      "tags": [
+        "minecraft",
+        "gaming",
+        "education"
+      ]
     },
     {
       "id": "m365/copilot",
@@ -40,7 +50,12 @@
       "publishedAt": "2026-01-01",
       "likes": 0,
       "comments": 0,
-      "category": "m365"
+      "category": "m365",
+      "tags": [
+        "m365",
+        "productivity",
+        "office"
+      ]
     },
     {
       "id": "copilot/copilot",
@@ -54,8 +69,25 @@
       "publishedAt": "2026-01-01",
       "likes": 0,
       "comments": 0,
-      "category": "copilot"
+      "category": "copilot",
+      "tags": [
+        "copilot",
+        "ai",
+        "productivity"
+      ]
     }
   ],
-  "total": 4
+  "total": 4,
+  "allTags": [
+    "ai",
+    "collaboration",
+    "copilot",
+    "education",
+    "gaming",
+    "m365",
+    "minecraft",
+    "office",
+    "productivity",
+    "teams"
+  ]
 }

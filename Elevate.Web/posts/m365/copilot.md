@@ -1,5 +1,5 @@
 title: M365에 대해
-tag: M365
+tags: [m365, productivity, office]
 date: 2026-01-01
 ---
 # H1태그

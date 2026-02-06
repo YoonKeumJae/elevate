@@ -1,5 +1,5 @@
 title: Minecraft에 대해
-tag: minecraft
+tags: [minecraft, gaming, education]
 date: 2026-01-01
 ---
 # H1태그

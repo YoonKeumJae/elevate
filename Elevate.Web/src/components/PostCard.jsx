@@ -2,8 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const PostCard = ({ post }) => {
-  const { id, slug, title, excerpt, imageUrl, author, publishedAt, likes = 0, comments = 0, category } = post;
-  const to = `/posts/${category || ''}/${slug || id}`;
+  const { id, slug, title, excerpt, imageUrl, author, publishedAt, likes = 0, comments = 0, category, tags = [] } = post;
+  const to = `/blog/${category || ''}/${slug || id}`;
 
   return (
     <article className="hover:shadow-lg reveal-card post-card rounded-2xl p-6 shadow-soft transition group bg-white h-full w-full max-w-[320px]">
@@ -20,6 +20,19 @@ const PostCard = ({ post }) => {
           <div className="flex-1 mt-4 flex flex-col">
             <h3 className="text-lg font-semibold text-slate-900 break-words" style={{display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden'}}>{title}</h3>
             <p className="text-sm text-slate-600 mt-2 break-words" style={{display: '-webkit-box', WebkitLineClamp: 3, WebkitBoxOrient: 'vertical', overflow: 'hidden'}}>{excerpt}</p>
+
+            {tags.length > 0 && (
+              <div className="flex flex-wrap gap-1 mt-2">
+                {tags.slice(0, 3).map((tag) => (
+                  <span key={tag} className="text-xs px-2 py-0.5 bg-slate-100 text-slate-600 rounded-full">
+                    {tag}
+                  </span>
+                ))}
+                {tags.length > 3 && (
+                  <span className="text-xs px-2 py-0.5 text-slate-400">+{tags.length - 3}</span>
+                )}
+              </div>
+            )}
 
             <div className="mt-4 flex items-center justify-between text-sm text-slate-500">
               <div className="flex items-center gap-3">

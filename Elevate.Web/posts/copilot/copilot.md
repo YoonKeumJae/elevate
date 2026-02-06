@@ -1,5 +1,5 @@
 title: Copilot에 대해
-tag: copilot
+tags: [copilot, ai, productivity]
 date: 2026-01-01
 ---
 # H1태그

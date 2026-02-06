@@ -1,5 +1,5 @@
 title: Teams에 대해
-tag: teams
+tags: [teams, collaboration, productivity]
 date: 2026-01-01
 ---
 # H1태그

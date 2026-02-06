@@ -113,6 +113,14 @@ async function walkPosts(dir) {
       const rawDate = data.date || null;
       const publishedAt = rawDate ? formatDateToYMD(rawDate) : formatDateToYMD((await fs.stat(filePath)).mtime);
 
+      // tags handling: support both `tags: [...]` array and legacy `tag: string`
+      let tags = [];
+      if (Array.isArray(data.tags)) {
+        tags = data.tags.map((t) => String(t).trim().toLowerCase()).filter(Boolean);
+      } else if (data.tag) {
+        tags = [String(data.tag).trim().toLowerCase()];
+      }
+
       const post = {
         id,
         slug,
@@ -124,6 +132,7 @@ async function walkPosts(dir) {
         likes: Number(data.likes || 0),
         comments: Number(data.comments || 0),
         category,
+        tags,
         content, // raw markdown body for detail page
       };
 
@@ -149,12 +158,22 @@ async function main() {
   }
   console.log(`Wrote ${posts.length} per-post JSON files to ${postsDir}`);
 
+  // Collect all unique tags
+  const allTagsSet = new Set();
+  for (const p of posts) {
+    for (const tag of p.tags || []) {
+      allTagsSet.add(tag);
+    }
+  }
+  const allTags = Array.from(allTagsSet).sort();
+
   // Write summary list (without content) for list pages
   const listItems = posts.map(({ content, ...rest }) => rest);
-  const out = { items: listItems, total: listItems.length };
+  const out = { items: listItems, total: listItems.length, allTags };
   const outPath = path.join(OUT_DIR, 'posts.json');
   await fs.writeFile(outPath, JSON.stringify(out, null, 2), 'utf-8');
-  console.log(`Wrote posts list to ${outPath}`);
+  console.log(`Wrote posts list to ${outPath} (${allTags.length} unique tags)`);
+  console.log('Tags:', allTags.join(', '));
 }
 
 main().catch((err) => {
