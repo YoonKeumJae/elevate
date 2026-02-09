@@ -38,8 +38,8 @@ const PostCard = ({ post }) => {
   }, [excerpt]);
 
   return (
-    <article ref={cardRef} className="hover:shadow-lg reveal-card post-card rounded-2xl p-6 shadow-soft transition group bg-white h-full w-full">
-      <Link to={to} aria-label={`Open post ${title}`} className="block  focus:outline-none focus:ring-2 focus:ring-ms-blue/30 h-full">
+    <article ref={cardRef} className="hover:shadow-lg reveal-card post-card rounded-2xl p-6 shadow-soft transition group bg-white h-full w-full min-w-[222px] max-w-[360px]">
+      <Link to={to} aria-label={`Open post ${title}`} className="block focus:outline-none focus:ring-2 focus:ring-ms-blue/30 h-full">
         <div className="flex flex-col h-full">
           <div className="w-full rounded-md overflow-hidden bg-slate-100" style={{height: 160}}>
             {imageUrl ? (
@@ -95,16 +95,19 @@ const PostCard = ({ post }) => {
 
             {tags.length > 0 && (
               <div
-                className="relative flex items-center gap-1 mt-2 whitespace-nowrap"
+                className="relative flex flex-wrap items-center gap-1 mt-2 max-w-full min-w-0"
                 onMouseEnter={() => setShowAllTags(true)}
                 onMouseLeave={() => setShowAllTags(false)}
               >
-                {tags.slice(0, 3).map((tag) => (
-                  <span key={tag} className="text-xs px-2 py-0.5 bg-slate-100 text-slate-600 rounded-full shrink-0">
+                {tags.slice(0, 2).map((tag) => (
+                  <span
+                    key={tag}
+                    className="text-xs px-2 py-0.5 bg-slate-100 text-slate-600 rounded-full shrink-0 max-w-[140px] overflow-hidden text-ellipsis whitespace-nowrap"
+                  >
                     {tag}
                   </span>
                 ))}
-                {tags.length > 3 && (
+                {tags.length > 2 && (
                   <div className="relative shrink-0">
                     <button
                       ref={moreRef}
@@ -113,9 +116,9 @@ const PostCard = ({ post }) => {
                       onFocus={() => setShowAllTags(true)}
                       onBlur={() => setShowAllTags(false)}
                       onClick={() => setShowAllTags((v) => !v)}
-                      aria-label={`추가 태그 ${tags.length - 3}개 보기`}
+                      aria-label={`추가 태그 ${tags.length - 2}개 보기`}
                     >
-                      +{tags.length - 3}
+                      +{tags.length - 2}
                     </button>
 
                     {showAllTags && (
@@ -124,8 +127,11 @@ const PostCard = ({ post }) => {
                         className="absolute left-1/2 -translate-x-1/2 top-full mt-2 z-20 w-max max-w-[240px] rounded-xl border border-slate-200 bg-white shadow-lg p-3 text-xs text-slate-700"
                       >
                         <div className="flex flex-wrap gap-1">
-                          {tags.slice(3).map((tag) => (
-                            <span key={tag} className="px-2 py-0.5 rounded-full bg-slate-100 text-slate-600 whitespace-nowrap">
+                          {tags.slice(2).map((tag) => (
+                            <span
+                              key={tag}
+                              className="px-2 py-0.5 rounded-full bg-slate-100 text-slate-600 whitespace-nowrap max-w-[160px] overflow-hidden text-ellipsis"
+                            >
                               {tag}
                             </span>
                           ))}

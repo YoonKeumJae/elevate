@@ -8,8 +8,7 @@ const PostGrid = ({ posts = [] }) => {
 
   return (
     <div
-      className="grid gap-6"
-      style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))' }}
+      className="grid gap-6 [grid-template-columns:repeat(auto-fit,minmax(240px,1fr))]"
     >
       {posts.map((p) => (
         <div key={p.id || p.slug} className="h-full">

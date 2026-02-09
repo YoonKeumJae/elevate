@@ -24,8 +24,8 @@ export default function PostList() {
   const { category } = useParams();
   const [searchParams, setSearchParams] = useSearchParams();
   const pageParam = parseInt(searchParams.get('page') || '1', 10);
-  // Align page size with typical 5-column desktop grid (2 full rows)
-  const PAGE_SIZE = 10;
+  // Show more posts per page to reduce pagination churn
+  const PAGE_SIZE = 20;
 
   // Parse selected tags from URL query param
   const tagsParam = searchParams.get('tags') || '';
@@ -99,7 +99,8 @@ export default function PostList() {
   // Paginate filtered posts
   const total = filteredPosts.length;
   const totalPages = Math.max(1, Math.ceil(total / PAGE_SIZE));
-  const start = (pageParam - 1) * PAGE_SIZE;
+  const currentPage = Math.min(Math.max(pageParam, 1), totalPages);
+  const start = (currentPage - 1) * PAGE_SIZE;
   const posts = filteredPosts.slice(start, start + PAGE_SIZE);
 
   const updateUrlParams = (params) => {
@@ -184,7 +185,7 @@ export default function PostList() {
             )}
           </div>
           <PostGrid posts={posts} />
-          <Pagination currentPage={pageParam} totalPages={totalPages} onPageChange={handlePageChange} />
+          <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange} />
         </section>
       </div>
     </main>
