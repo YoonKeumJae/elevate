@@ -24,7 +24,7 @@ export default function PostList() {
   const { category } = useParams();
   const [searchParams, setSearchParams] = useSearchParams();
   const pageParam = parseInt(searchParams.get('page') || '1', 10);
-  // Show more posts per page to reduce pagination churn
+  // 4x5 슬롯(20개) 고정 레이아웃을 유지하기 위한 페이지 크기
   const PAGE_SIZE = 20;
 
   // Parse selected tags from URL query param
