@@ -2,7 +2,6 @@ title: 🔎 수행평가 채점은 끝났는데... 다음 수업은 어떻게 �
 tags: [copilot, productivity, agent]
 date: 2026-01-26
 excerpt: ‘분석가(Analyst)’로 수행평가 결과 바로 수업에 쓰기
-image: /images/sampleImage.jpg
 ---
 > **이런 순간, 익숙하지 않으신가요?** <br>
 수행평가 채점까지는 끝냈습니다.
