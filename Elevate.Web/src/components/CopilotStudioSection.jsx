@@ -10,15 +10,18 @@ const CopilotStudioSection = () => {
                     <div className="lg:w-2/3">
                         <span className="inline-block py-1 px-3 rounded-md bg-purple-100 text-purple-600 font-bold text-xs uppercase mb-4 tracking-wider">AI Skilling</span>
                         <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-slate-900">
-                            대한민국 AI Skilling,<br/>Copilot Agent로 시작합니다!
+                            대한민국 AI Skilling,<br />
+                            Copilot Agent로 <br className="md:hidden" />
+                            시작합니다!
                         </h2>
                         <p className="text-slate-600 text-base mb-10 leading-relaxed font-medium">
-                            학생들과 교육자들이 직접 AI 에이전트를 만드는 해커톤
-                            <span className="text-purple-600 font-bold">'에이전톤'</span>에 도전하세요.<br/>
-                            Copilot → Studio → Foundry로 이어지는 
-                            <span className="text-purple-600 font-bold"> AI 제작 3단계 여정</span>은
-                            AI를 User가 아닌,<br/>
-                            <span className="text-purple-600 font-bold">Creator</span>로 성장할 수 있는 구조를 제공합니다.
+                            학생들과 교육자들이 직접 AI 에이전트를 만드는 해커톤{' '}
+                            <span className="text-purple-600 font-bold">‘에이전톤’</span>에 도전하세요.
+                            <br className="hidden md:block" />
+                            Copilot → Studio → Foundry로 이어지는{' '}
+                            <span className="text-purple-600 font-bold">AI 제작 3단계 여정</span>은 AI를 단순히 잘 사용하는
+                            <br className="hidden md:block" />
+                            User가 아닌 Creator, 즉 <span className="text-purple-600 font-bold">Agent Boss</span>로 성장할 수 있는 구조를 제공합니다.
                         </p>
                         <div className="flex flex-wrap gap-4 justify-center lg:justify-start">
                             <a
