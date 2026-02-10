@@ -38,7 +38,10 @@ const PostCard = ({ post }) => {
   }, [excerpt]);
 
   return (
-    <article ref={cardRef} className="hover:shadow-lg reveal-card post-card rounded-2xl p-6 shadow-soft transition group bg-white h-full w-full min-w-[222px] max-w-[360px]">
+    <article
+      ref={cardRef}
+      className="hover:shadow-lg reveal-card post-card rounded-2xl p-6 shadow-soft transition group bg-white h-full w-full max-w-full"
+    >
       <Link to={to} aria-label={`Open post ${title}`} className="block focus:outline-none focus:ring-2 focus:ring-ms-blue/30 h-full">
         <div className="flex flex-col h-full">
           <div className="w-full rounded-md overflow-hidden bg-slate-100" style={{height: 160}}>
