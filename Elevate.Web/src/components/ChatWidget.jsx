@@ -7,15 +7,29 @@ const ChatWidget = () => {
   const [isBotTyping, setIsBotTyping] = useState(false); // 봇 타이핑 상태 관리
   const typingTimeoutRef = useRef(null); // 타이핑 타임아웃 관리
 
-  // 환경 변수에서 Secret Key 가져오기
-  const secretKey = import.meta.env.VITE_DIRECT_LINE_SECRET;
-
+  // 클라이언트에는 Secret Key가 저장되지 않습니다.
+  // 대신 서버에서 받아온 토큰으로 Direct Line을 초기화합니다.
   useEffect(() => {
-    if (secretKey) {
-      const dl = createDirectLine({ token: secretKey });
-      setDirectLine(dl);
-    }
-  }, [secretKey]);
+    const getSecureToken = async () => {
+      try {
+        // Azure Function URL을 호출합니다 (URL 끝에 /api/GetToken 확인)
+        const response = await fetch('https://af01-ceh2a2e2ezgda9a6.koreacentral-01.azurewebsites.net/api/GetToken');
+        
+        if (!response.ok) throw new Error('토큰을 가져오지 못했습니다.');
+
+        const data = await response.json();
+
+        // 시크릿 키 대신 서버에서 받은 '임시 토큰'으로 연결
+        const dl = createDirectLine({ token: data.token });
+        setDirectLine(dl);
+        
+      } catch (err) {
+        console.error("보안 연결 실패:", err);
+      }
+    };
+
+    getSecureToken();
+  }, []); // 빈 배열을 넣어 페이지 로드 시 한 번만 실행되게 합니다.
 
   // ✅ 로딩 애니메이션 (말풍선 배경 제거됨, 점만 둥둥)
   const LoadingSpinner = () => (
@@ -81,10 +95,10 @@ const ChatWidget = () => {
   }), []);
 
   return (
-    <div className="fixed bottom-6 right-6 z-[9999] flex flex-col items-end gap-4 font-sans">
+    <div className="fixed bottom-6 right-6 z-[9999] flex flex-col items-end gap-4 font-sans pointer-events-none">
       {/* 채팅창 컨테이너 */}
       <div
-        className={`
+        className={`pointer-events-auto
           w-[380px] h-[650px] max-w-[calc(100vw-2rem)] max-h-[80vh]
           bg-white/80 backdrop-blur-2xl border border-white/60
           rounded-[2.5rem] shadow-2xl shadow-blue-900/15
@@ -140,7 +154,7 @@ const ChatWidget = () => {
       {/* 토글 버튼 */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className={`
+        className={`pointer-events-auto
           group relative w-16 h-16 rounded-full 
           bg-gradient-to-tr from-[#0078D4]/85 to-[#00C7F4]/85 backdrop-blur-md
           border border-white/40 text-white shadow-lg shadow-blue-500/30
